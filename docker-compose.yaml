@@ -1,0 +1,36 @@
+# docker-compose version 1.29.2, build 5becea4c
+# Compose file format
+version: '3.8'
+
+services:
+  # PostgreSQL as database
+  db:
+    image: postgres:14-alpine
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    env_file: ./setup/.env
+    volumes:
+      - ./volumes/postgres-db/:/var/lib/postgresql/data
+      - ./setup/postgres_init.sql:/docker-entrypoint-initdb.d/postgres_init.sql
+
+  # pgAdmin as Database management
+  # email    : pgadmin4@pgadmin.org
+  # password : admin
+  db-management:
+    image: dpage/pgadmin4:6.2
+    container_name: db-management
+    env_file: ./setup/.env
+    ports:
+      - "5050:5050"
+    volumes:
+      - ./volumes/pgadmin4/:/var/lib/pgadmin
+      - ./setup/servers.json/:/pgadmin4/servers.json
+      - ./setup/pgpassfile/:/pgadmin4/pgpassfile
+    depends_on:
+      - db
+
+# Network | Allow connections between containers
+networks:
+  default:
+    driver: bridge

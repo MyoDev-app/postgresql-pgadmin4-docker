@@ -1,0 +1,14 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "MyoDev main database",
+            "Group": "main-databases",
+            "Port": 5432,
+            "Username": "admin",
+            "PassFile": "pgadmin4/pgpassfile",
+            "Host": "postgres-db",
+            "SSLMode": "prefer",
+            "MaintenanceDB": "postgres"
+        }
+    }
+}
