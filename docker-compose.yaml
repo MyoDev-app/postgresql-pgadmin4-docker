@@ -14,24 +14,23 @@ services:
     volumes:
       - ./volumes/postgres-db/:/var/lib/postgresql/data
       - ./setup/postgres_init.sql:/docker-entrypoint-initdb.d/postgres_init.sql
-
   # pgAdmin as Database management
   # email    : pgadmin4@pgadmin.org
   # password : admin
-  db-management:
-    image: dpage/pgadmin4:6.2
-    container_name: db-management
-    env_file: ./setup/.env
-    ports:
-      - "5050:5050"
-    volumes:
-      - ./volumes/pgadmin4/var/lib/pgadmin:/var/lib/pgadmin
-      - ./setup/servers.json/:/pgadmin4/servers.json
-      - ./setup/pgpassfile/:/pgadmin4/pgpassfile
-    depends_on:
-      - db
+  # db-management:
+  #   image: dpage/pgadmin4:6.2
+  #   container_name: db-management
+  #   env_file: ./setup/.env
+  #   ports:
+  #     - "5050:5050"
+  #   volumes:
+  #     - ./volumes/pgadmin4/var/lib/pgadmin:/var/lib/pgadmin
+  #     - ./setup/servers.json/:/pgadmin4/servers.json
+  #     - ./setup/pgpassfile/:/pgadmin4/pgpassfile
+  #   depends_on:
+  #     - db
 
-# Network | Allow connections between containers
+  # Network | Allow connections between containers
 networks:
   default:
     driver: bridge

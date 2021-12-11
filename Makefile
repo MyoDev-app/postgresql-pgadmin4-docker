@@ -1,4 +1,5 @@
 run:
+	make build
 	docker-compose up
 
 build:
