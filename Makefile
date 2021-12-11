@@ -5,4 +5,5 @@ build:
 	docker-compose build
 
 down:
+	rm -rf volumes/*
 	docker-compose down
